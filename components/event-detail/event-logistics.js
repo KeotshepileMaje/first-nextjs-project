@@ -12,6 +12,7 @@ function EventLogistics(props) {
     year: 'numeric',
   });
   const addressText = address.replace(', ', '\n');
+  
 
   return (
     <section className={classes.logistics}>
