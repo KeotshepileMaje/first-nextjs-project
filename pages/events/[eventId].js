@@ -10,6 +10,7 @@ export default function EventsIdPage() {
     const router = useRouter()
 
     const eventId = router.query.eventId
+
     const event = getEventById(eventId)
 
     if (!event) {
@@ -28,7 +29,7 @@ export default function EventsIdPage() {
                 imageAlt = {event.title}
             />
             <EventContent>
-                <p>{event.description}</p>
+                {event.description}
             </EventContent>
         
         </Fragment>
