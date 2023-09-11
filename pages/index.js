@@ -1,12 +1,9 @@
 import Head from 'next/head'
-import { getFeaturedEvents } from '@/data/dummyData'
+import { getFeaturedEvents } from '@/components/helpers/api-util'
 import EventList from '../components/events/EventsList'
 
-export default function Home() {
-    const featuredEvents = getFeaturedEvents()
-
-    console.log(featuredEvents)
-
+export default function Home(props) {
+    console.log(props.events)
     return (
         <>
             <Head>
@@ -16,8 +13,17 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <EventList items={featuredEvents} />
+                <EventList items={props.events} />
             </main>
         </>
     )
+}
+
+export async function getStaticProps() {
+    const featuredEvents = await getFeaturedEvents()
+    
+    return{
+        props: { events : featuredEvents },
+        revalidate: 1800
+    }
 }
