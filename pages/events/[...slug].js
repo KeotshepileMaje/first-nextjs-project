@@ -6,10 +6,7 @@ import { getFilteredEvents } from "@/data/dummyData"
 import { useRouter } from "next/router"
 import { Fragment } from "react"
 
-export default function FilteredEventPage() { 
-    const router = useRouter()
-
-    const filterData = router.query.slug
+export default function FilteredEventPage({ filterData }) { 
 
     if (!filterData) {
         return <p className="center">Loading</p>
@@ -64,4 +61,30 @@ export default function FilteredEventPage() {
             <EventList items = {filteredEvents} />
         </Fragment>
     )
+}
+export async function getServerSideProps(context) {
+    const { param } = context
+    const filterData = param.slug
+
+    if (!filterData) {
+        return {
+            notFound: true
+        }
+    }
+
+    return {
+        props: {
+            filterData : filterData
+        }
+    }
+}
+
+export async function getStaticPaths () {
+    const 
+    return {
+        paths: [
+            {}
+        ],
+        fallback: true
+    }
 }
