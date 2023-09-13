@@ -2,6 +2,7 @@ import EventContent from '@/components/event-detail/event-content'
 import EventLogistics from '@/components/event-detail/event-logistics'
 import EventSummary from '@/components/event-detail/event-summary'
 import { getEventById, getFeaturedEvents } from '@/components/helpers/api-util'
+import Comments from '@/components/input/comments'
 import ErrorAlert from '@/components/ui/error-alert/error-alert'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -37,6 +38,7 @@ export default function EventsIdPage(props) {
             <EventContent>
                 {event.description}
             </EventContent>
+            <Comments eventId={event.id} />
         
         </Fragment>
     )
