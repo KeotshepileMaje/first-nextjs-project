@@ -1,3 +1,14 @@
+import fs from 'fs'
+import path from 'path'
+
+export function buildPath() {
+    return path.join(process.cwd(), 'data', 'regDetails.json')
+}
+export function extractData(filePath) {
+    const fileData = fs.readFileSync(filePath)
+    return JSON.parse(fileData)
+}
+
 export async function getAllEvents() {
   const response = await fetch('https://nextjs-course-c81cc-default-rtdb.firebaseio.com/events.json');
   const data = await response.json();
